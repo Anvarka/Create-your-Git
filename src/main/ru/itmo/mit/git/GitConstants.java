@@ -19,4 +19,11 @@ public final class GitConstants {
     public static final @NotNull String MERGE = "merge";
 
     public static final @NotNull String MASTER = "master";
+
+    public static final @NotNull String UNTRACKED = "untracked";
+    public static final @NotNull String NEW = "new";
+    public static final @NotNull String MODIFIED = "modified";
+    public static final @NotNull String REMOVED = "removed";
+    public static final @NotNull String READYTOREMOVE = "ready to remove";
+    public static final @NotNull String GOOD = "is everything up to date";
 }
