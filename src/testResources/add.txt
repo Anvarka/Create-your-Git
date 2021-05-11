@@ -7,10 +7,7 @@ Create file 'file.txt' with content 'aaa'
 Command: status
 Current branch is 'master'
 Untracked files:
-
-New files:
     file.txt
-
 ----------------------------
 Command: add file.txt
 Add completed successful
@@ -18,10 +15,9 @@ Add completed successful
 Command: status
 Current branch is 'master'
 Ready to commit:
-
+    file.txt
 New files:
     file.txt
-
 ----------------------------
 Command: commit First commit
 Files committed
@@ -42,3 +38,4 @@ Author: Test user
 Date: COMMIT_DATE
 
 Initial commit
+

@@ -14,11 +14,8 @@ Delete file file.txt
 ----------------------------
 Command: status
 Current branch is 'master'
-Untracked files:
-
 Removed files:
     file.txt
-
 ----------------------------
 Command: checkout -- file.txt
 Checkout completed successful
@@ -37,11 +34,8 @@ bbb
 ----------------------------
 Command: status
 Current branch is 'master'
-Untracked files:
-
 Modified files:
     file.txt
-
 ----------------------------
 Command: checkout -- file.txt
 Checkout completed successful

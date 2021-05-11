@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 public class GitTest extends AbstractGitTest {
     @Override
     protected GitCli createCli(String workingDir) {
-        throw new UnsupportedOperationException();
+        return new GitCliImpl();
     }
 
     @Override
     protected TestMode testMode() {
-        return TestMode.SYSTEM_OUT;
+        return TestMode.TEST_DATA;
     }
 
     @Test
@@ -127,6 +127,7 @@ public class GitTest extends AbstractGitTest {
         createFileAndCommit("file1.txt", "aaa");
 
         createBranch("develop");
+        checkoutBranch("develop");
         createFileAndCommit("file2.txt", "bbb");
 
         status();
@@ -137,6 +138,7 @@ public class GitTest extends AbstractGitTest {
         log();
 
         createBranch("new-feature");
+        checkoutBranch("new-feature");
         createFileAndCommit("file3.txt", "ccc");
         status();
         log();
@@ -152,6 +154,7 @@ public class GitTest extends AbstractGitTest {
     public void testBranchRemove() throws Exception {
         createFileAndCommit("file1.txt", "aaa");
         createBranch("develop");
+        checkoutBranch("develop");
         createFileAndCommit("file2.txt", "bbb");
         status();
         checkoutBranch("master");

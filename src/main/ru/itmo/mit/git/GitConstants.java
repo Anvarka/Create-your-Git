@@ -20,10 +20,20 @@ public final class GitConstants {
 
     public static final @NotNull String MASTER = "master";
 
-    public static final @NotNull String UNTRACKED = "untracked";
-    public static final @NotNull String NEW = "new";
-    public static final @NotNull String MODIFIED = "modified";
-    public static final @NotNull String REMOVED = "removed";
-    public static final @NotNull String READYTOREMOVE = "ready to remove";
-    public static final @NotNull String GOOD = "is everything up to date";
+    public static final @NotNull String UNTRACKED_FILES = "Untracked files:";
+    public static final @NotNull String NEW_FILES = "New files:";
+    public static final @NotNull String MODIFIED_FILES = "Modified files:";
+    public static final @NotNull String REMOVED_FILES = "Removed files:";
+    public static final @NotNull String READY_TO_COMMIT = "Ready to commit:";
+
+    public static final @NotNull String PATH_INDEX = ".myGit/index";
+    public static final @NotNull String PATH_ROOT = "playground/";
+    public static final @NotNull String PATH_TO_HEAD = ".myGit/HEAD/";
+    public static final @NotNull String PATH_TO_OBJECTS = ".myGit/objects/";
+    public static final @NotNull String PATH_TO_BLOBS = ".myGit/blobs/";
+    public static final @NotNull String PATH_TO_BRANCHES = ".myGit/branches/";
+    public static final @NotNull String PATH_TO_COMMITS = ".myGit/commits/";
+
+    public static final @NotNull String TREE = "tree ";
+    public static final @NotNull String BLOB = "blob ";
 }

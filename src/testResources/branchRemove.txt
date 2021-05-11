@@ -14,6 +14,9 @@ Command: branch-create develop
 Branch develop created successfully
 You can checkout it with 'checkout develop'
 ----------------------------
+Command: checkout develop
+Checkout completed successful
+----------------------------
 Create file 'file2.txt' with content 'bbb'
 ----------------------------
 Command: add file2.txt
