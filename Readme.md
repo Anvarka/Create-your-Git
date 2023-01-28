@@ -1,59 +1,48 @@
-# Git
+#Git
 
-## Требования
+## Requirements
 
-Реализовать систему контроля версий и CLI (command line interface) к ней со следующими возможностями (20 баллов):
+Implement a version control system and CLI (command line interface) to it with the following features (20 points):
 
-* `init` -- инициализация репозитория
-* `add <files>` -- добавление файла
-* `rm <files>` -- файл удаляется из репозитория, физически остается
-* `status` -- измененные/удаленные/не добавленные файлы
-* `commit <message>` с проставлением даты и времени
-* `reset <to_revision>`. Поведение `reset` совпадает с `git reset --hard`
-* `log [from_revision]`
+* `init` -- initialization of the repository
+* `add <files>` -- add a file
+* `rm <files>` -- the file is removed from the repository, physically remains
+* `status` -- changed/deleted/not added files
+* `commit <message>` with date and time
+* `reset <to_revision>`. The behavior of `reset` is the same as `git reset --hard`
+* `log[from_revision]`
 * `checkout <revision>`
-    * Возможные значения `revision`:
-        * `commit hash` -- хеш коммита
-        * `master` -- вернуть ветку в исходное состояние
-        * `HEAD~N`, где `N` -- неотрицательное целое число. `HEAD~N` означает _N-й коммит перед HEAD (`HEAD~0 == HEAD`)
-* `checkout -- <files>` -- сбрасывает изменения в файлах
+     * Possible values for `revision`:
+         * `commit hash` -- commit hash
+         * `master` -- revert the branch to its original state
+         * `HEAD~N`, where `N` is a non-negative integer. `HEAD~N` means _Nth commit before HEAD (`HEAD~0 == HEAD`)
+* `checkout -- <files>` -- flush changes to files
 
-Дополнительные команды (+5 дополнительных баллов):
+Additional teams (+5 extra points):
 
-* `branch-create <branch>` -- создать ветку с именем `<branch>`
-* `branch-remove <branch>` -- удалить ветку `<branch>`
-* `show-branches` -- показать все имеющиеся ветки
-* `merge <branch>` -- слить ветку `<branch>` в текущую
+* `branch-create <branch>` -- create a branch named `<branch>`
+* `branch-remove <branch>` -- remove branch `<branch>`
+* `show-branches` -- show all available branches
+* `merge <branch>` -- merge the `<branch>` branch into the current one
 
-## Асимптотика
+## Asymptotics
 
-На все команды есть ограничения на время работы:
-* Главное требование — не O(n), где n — число всех коммитов в текущей ветке
-* Для reset, log и checkout максимальная асимптотика — количество коммитов между текущим и указанным
-* Для остальных оптимальным вариантом будет O(1), но можно больше.
+All commands have time limits:
+* The main requirement is not O(n), where n is the number of all commits in the current branch
+* For reset, log and checkout, the maximum asymptotics is the number of commits between the current one and the specified one
+* For the rest, O(1) is optimal, but more is possible.
 
-## Примечания
+## Notes
 
-* `<smth>` означает, что передаваемые данные обязательны
-* `[smth]` означает, что передаваемые данные опциональны
-* разрешается использование любых вспомогательных библиотек (кроме тех библиотек, что предоставляют функциональность системы контроля версий)
-    * для реализации CLI интерфейса настоятельно рекомендуется пользоваться библиотеками. Например, [CLI commons](http://commons.apache.org/proper/commons-cli/), которая уже подключена в зависимости проекта (но можно и другой)
-* достаточно поддержать версионирование только текстовых файлов
-* для каждой ревизии __НЕ__ должна храниться полная копия репозитория
+* `<smth>` means that the transmitted data is required
+* `[smth]` means that the data being passed is optional
+* it is allowed to use any auxiliary libraries (except those libraries that provide the functionality of the version control system)
+     * It is strongly recommended to use libraries to implement the CLI interface. For example, [CLI commons](http://commons.apache.org/proper/commons-cli/), which is already included in the project dependencies (but another one is possible)
+* it is enough to support versioning of text files only
+* for each __NOT__ revision, a full copy of the repository must be kept
 
-## Тесты
+## Tests
 
-В репозитории присутствует интерфейс [GitCli](src/main/ru/itmo/mit/git/GitCli), который нужен только для того, чтобы связать ваш git с готовой тестовой инфраструктурой, которая представлена классом [AbstractGitTest](src/test/ru/itmo/mit/git/AbstractGitTest). В этом классе представлен набор различных команд, для создания различных сценариев использования вашего приложения (ко всем командам в коде есть комментарии). В [GitTest](src/test/ru/itmo/mit/git/GitTest) представлен пример описания тестов: в одном тесте вы описываете последовательность команд, которые могут манипулировать с файлами или вызывать команды git'а. При запуске тест выведет в консоль весь `output` вашего приложения.
+The repository contains the [GitCli](src/main/ru/itmo/mit/git/GitCli) interface, which is only needed to connect your git with a ready-made test infrastructure, which is represented by the [AbstractGitTest](src/test/ru /itmo/mit/git/AbstractGitTest). This class provides a set of different commands to create different scenarios for using your application (there are comments for all commands in the code). See [GitTest](src/test/en/itmo/mit/git/GitTest) for an example of describing tests: in one test, you describe a sequence of commands that can manipulate files or call git commands. When run, the test will print the entire `output` of your application to the console.
 
-У `GitTest` есть наследник [TestDataGitTest](src/test/ru/itmo/mit/git/TestDataGitTest), который отличается от первого режимом исполнения. `TestDataGitTest` не выводит в консоль вывод приложения. Вместо этого он перехватывает его и сравнивает с expected выводом, который записан в соответствующем файле в директории [testResources](src/testResources) (обратите внимание на вызовы вида `check("someFile.txt")` в тестах).
-
-**Важно:** уже представленные в `resources` тесты показывают лишь **пример** того, как может выглядеть output вашего приложения. Вы вправе менять тесты по собственному усмотрению и не обязаны соблюдать формат, который уже описан в тестах.
-
-Расширяйте и меняйте код `AbstractGitTest`, если вам это потребуется.
-
-Написание своих тест-кейсов приветствуется.
-
-## Дедлайн
-
-- Мягкий дедлайн: 02.05.2021, 23:59
-- Жёсткий дедлайн: 11.05.2021, 23:59
+`GitTest` has a successor [TestDataGitTest](src/test/ru/itmo/mit/git/TestDataGitTest), which differs from the first one in the execution mode. `TestDataGitTest` does not print the output of the application to the console. Instead, it catches it and compares it with the expected output, which is written in the corresponding file in the [testResources](src/testResources) directory (note the calls like `check("someFile.txt")` in the tests).
